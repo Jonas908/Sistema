@@ -14,7 +14,7 @@
     </head>
     <body>
         <h2>ENTRE COM LOGIN E SENHA</h2>
-        <form method="post" action="cadastra.do" > 
+        <form method="post" action="autentica.do" > 
             <div>
                 <label>
                     nome
@@ -28,7 +28,7 @@
                 </label>
             </div>
         <div>
-            <input type="submit" name="autentica" value="ENTRAR"/>
+            <input type="submit" value="ENTRAR"/>
             <input type="reset" value="LIMPAR"/> </div>
             <br>
         <br>

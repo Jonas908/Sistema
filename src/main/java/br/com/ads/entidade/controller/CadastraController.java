@@ -10,12 +10,9 @@ import br.com.adsfacam.entidade.Funcionario;
 import br.com.adsfacam.entidade.Hotel;
 import br.com.adsfacam.entidade.Voo;
 
-
-
 import br.com.adsfacam.persistencia.ConexaoBanco.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.String.format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,7 +23,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/cadastra.do")
@@ -35,6 +31,7 @@ public class CadastraController extends HttpServlet {
  
 
     
+    @SuppressWarnings("deprecation")
     protected void processRequest(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         res.setContentType("text/html;charset=UTF-8");
@@ -161,8 +158,7 @@ public class CadastraController extends HttpServlet {
                   SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                  Date date =   format.parse(data);
            
-
-          
+                           
                 /*  SimpleDateFormat formate = new SimpleDateFormat("yyyy-MM-dd");
           Date dataFo = formate.parse(dataVolta);*/
                   
@@ -173,8 +169,8 @@ public class CadastraController extends HttpServlet {
                v.setAeroOrig(aeroOrig);
                v.setCidadeDest(cidadeDest);
                v.setAerodest(aeroDest);
-               v.setHoraSaida(horaS);
-               v.setHoraChegada(horaC);
+               v.setHoraSaida(Time(horaSaida));
+               v.setHoraChegada(Time(horaChegada));
                v.setData((java.sql.Date) date);
                v.setValor(Float.parseFloat(valor));
                
@@ -227,16 +223,16 @@ public class CadastraController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest req, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
-     * @param response servlet response
+     * @param req
+     * @param resp
+    
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
@@ -244,33 +240,6 @@ public class CadastraController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
       
-          String login = req.getParameter("login");
-          String senha = req.getParameter("senha");
-        
-        Cliente cliente = new Cliente();
-        cliente.setLogin(login);
-        cliente.setSenha(senha);
-        
-        UsuarioDAO usuDAO = new UsuarioDAO();
-        Cliente cliAutenticado = usuDAO.autentica(cliente);
-        
-        
-        if(cliAutenticado != null){
-            
-            HttpSession sessao = req.getSession();
-            sessao.setAttribute("cliente",cliAutenticado);
-            
-            sessao.setMaxInactiveInterval(60*5);
-            
-            req.getRequestDispatcher("index.html").forward(req,resp);
-        
-        }else{
-            
-              
-        }
-        
-        
-        
     }
 
     /**

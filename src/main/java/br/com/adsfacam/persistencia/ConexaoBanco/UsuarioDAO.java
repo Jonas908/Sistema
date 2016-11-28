@@ -247,12 +247,11 @@ public class UsuarioDAO {
 
     public Cliente autentica(Cliente clienteConsulta) {
        
-         String sql ="select * from cliente where login=? and senha=?";
+         String sql ="select * from cliente where login= ? and senha= ?";
         
-        try {
-            PreparedStatement pre = con.prepareStatement(sql);
+        try (PreparedStatement pre = con.prepareStatement(sql)){
             
-            pre.setString(1,clienteConsulta.getLogin());
+            pre.setString(1, clienteConsulta.getLogin());
             pre.setString(2, clienteConsulta.getSenha());
             
             

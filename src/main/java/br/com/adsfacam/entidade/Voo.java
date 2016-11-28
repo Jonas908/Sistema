@@ -18,27 +18,12 @@ public class Voo  {
     private Time horaSaida;
     private Time horaChegada;
     private Date data;
-
-    public Time getHoraSaida() {
-        return horaSaida;
-    }
-
-    public void setHoraSaida(Time horaSaida) {
-        this.horaSaida = horaSaida;
-    }
-
-    public Time getHoraChegada() {
-        return horaChegada;
-    }
-
-    public void setHoraChegada(Time horaChegada) {
-        this.horaChegada = horaChegada;
-    }
     private float valor;
 
-    public Voo() {
+     public Voo() {
     
     }
+   
 
     public Voo(Integer vooId, String cidadeOrig, String aeroOrig, String cidadeDest, String aerodest, Time horaSaida, Time horaChegada,Date data, float valor) {
         this.vooId = vooId;
@@ -110,6 +95,25 @@ public class Voo  {
     public void setData(Date data) {
         this.data = data;
     }
+
+    public Time getHoraSaida() {
+        return horaSaida;
+    }
+
+    public void setHoraSaida(Time horaSaida) {
+        this.horaSaida = horaSaida;
+    }
+
+    public Time getHoraChegada() {
+        return horaChegada;
+    }
+
+    public void setHoraChegada(Time horaChegada) {
+        this.horaChegada = horaChegada;
+    }
+    
+
+   
 
 
     
